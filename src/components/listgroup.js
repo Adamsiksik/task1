@@ -1,7 +1,12 @@
 import Badge from "react-bootstrap/Badge";
 import ListGroup from "react-bootstrap/ListGroup";
+
+import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
+import Card from "./card";
 function ListG(props) {
+  const [active, setActive] = useState();
+
   return (
     <div>
       {props.prod.map((item, i) => (
@@ -17,12 +22,21 @@ function ListG(props) {
             <Badge bg="primary" pill>
               {item.currency}
             </Badge>
-            <a href={`/stock_detail?name=${item.symbol}`}>
-              <Button variant="primary" size="sm">
-                Details
-              </Button>
-            </a>
+            <Button
+              onClick={() => {
+                if (active === i) {
+                  setActive();
+                } else {
+                  setActive(i);
+                }
+              }}
+              variant="primary"
+              size="sm"
+            >
+              Details
+            </Button>
           </ListGroup.Item>
+          <div>{active !== i ? "" : <Card name={item.symbol} />}</div>
         </ListGroup>
       ))}
     </div>
