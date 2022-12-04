@@ -6,7 +6,9 @@ import Button from "react-bootstrap/Button";
 import Card from "./card";
 function ListG(props) {
   const [active, setActive] = useState();
-
+  useEffect(() => {
+    setActive();
+  }, [props]);
   return (
     <div>
       {props.prod.map((item, i) => (
@@ -36,7 +38,7 @@ function ListG(props) {
               Details
             </Button>
           </ListGroup.Item>
-          <div>{active !== i ? "" : <Card name={item.symbol} />}</div>
+          <div>{(active !== i) ? "" : <Card name={item.symbol} />}</div>
         </ListGroup>
       ))}
     </div>
