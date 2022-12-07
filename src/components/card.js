@@ -3,15 +3,24 @@ import Card from "react-bootstrap/Card";
 import { useEffect, useState } from "react";
 
 function CardComp(props) {
+  let t = props.type === "stocks";
+  console.log(Math.floor(Date.now() / 1000))
+  let url = `https://finnhub.io/api/v1/quote?symbol=${props.name}&token=ce1m9giad3i9ep8up0f0ce1m9giad3i9ep8up0fg`;
+  
+  if (t) {
+    url = `https://finnhub.io/api/v1/quote?symbol=${props.name}&token=ce1m9giad3i9ep8up0f0ce1m9giad3i9ep8up0fg`;
+  }
+  console.log(url)
+
   const [stockDetail, setDeatail] = useState();
   const axios = require("axios");
   const getData = async () => {
     await axios
-      .get(
-        `https://finnhub.io/api/v1/quote?symbol=${props.name}&token=ce1m9giad3i9ep8up0f0ce1m9giad3i9ep8up0fg`
-      )
+      .get(url)
       .then(function (response) {
         setDeatail(response.data);
+        console.log(response.data);
+
       })
       .catch(function (error) {
         console.log(error);
@@ -22,6 +31,9 @@ function CardComp(props) {
   useEffect(() => {
     getData();
   }, []);
+  console.log(props);
+  console.log(t);
+  console.log(t);
 
   return (
     <>
@@ -29,9 +41,20 @@ function CardComp(props) {
         {stockDetail ? (
           <Card>
             <Card.Body>
-              <Card.Title>Price {stockDetail.c}</Card.Title>
-              <Card.Text>Opening Price : {stockDetail.o}</Card.Text>
-              <Card.Text>Change Percentage : {stockDetail.dp}%</Card.Text>
+              <Card.Title>
+                {t
+                  ? `Price ${stockDetail.c}`: `Closing Price ${stockDetail.c[0]}`}
+              </Card.Title>
+              <Card.Text>
+                {t
+                  ? `Opening Price : ${stockDetail.o}`
+                  : `High Price ${stockDetail.h[0]} `}
+              </Card.Text>
+              <Card.Text>
+                {t
+                  ? `Change Percentage : ${stockDetail.dp} %`
+                  : `Low Price ${stockDetail.l[0]} `}
+              </Card.Text>
               <Button variant="primary">Buy Stock</Button>
             </Card.Body>
           </Card>

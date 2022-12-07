@@ -16,7 +16,7 @@ export default function Home() {
   const getName = async () => {
     await axios
       .get(
-        `  https://finnhub.io/api/v1/stock/symbol?exchange=US&mic=XNYS&token=ce1m9giad3i9ep8up0f0ce1m9giad3i9ep8up0fg
+        `  https://finnhub.io/api/v1/crypto/symbol?exchange=binance&token=ce1m9giad3i9ep8up0f0ce1m9giad3i9ep8up0fg
               `
       )
       .then(function (response) {
@@ -73,8 +73,7 @@ export default function Home() {
   return (
     <>
     <NavigationBar />
-      <Seachbar handleClick={handleClick} />
-      <MainList stocks={currentTableData} type={"stocks"} />
+      <MainList stocks={currentTableData} type={"crypto"}/>
       {stockName.length === 0 ? (
         ""
       ) : (

@@ -1,0 +1,18 @@
+.bar {
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  }
+  .navhead {
+    color: #3db5d9;
+  
+    font-size: 23px;
+  }
+  
+  .navLink {
+    color: #626262;
+    font-size: 15px;
+  }
+  .navLink:hover,
+  .navhead:hover {
+    color: #3db5d9;
+  }
+  

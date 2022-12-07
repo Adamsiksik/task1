@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "./card";
 function ListG(props) {
+  let t = props.type === "stocks";
   const [active, setActive] = useState();
   useEffect(() => {
     setActive();
@@ -22,23 +23,29 @@ function ListG(props) {
               {item.description}
             </div>
             <Badge bg="primary" pill>
-              {item.currency}
+              {t === true ? item.currency : item.description}
             </Badge>
-            <Button
-              onClick={() => {
-                if (active === i) {
-                  setActive();
-                } else {
-                  setActive(i);
-                }
-              }}
-              variant="primary"
-              size="sm"
-            >
-              Details
-            </Button>
+            {t ? (
+              <Button
+                onClick={() => {
+                  if (active === i) {
+                    setActive();
+                  } else {
+                    setActive(i);
+                  }
+                }}
+                variant="primary"
+                size="sm"
+              >
+                Details
+              </Button>
+            ) : (
+              " "
+            )}
           </ListGroup.Item>
-          <div>{(active !== i) ? "" : <Card name={item.symbol} />}</div>
+          <div>
+            {active !== i ? "" : <Card name={item.symbol} type={props.type} />}
+          </div>
         </ListGroup>
       ))}
     </div>
