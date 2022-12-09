@@ -1,0 +1,15 @@
+.list {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-radius: 0px;
+}
+
+.listactive {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: #e6eeff;
+  border-style: none;
+  border-radius: 0px;
+}

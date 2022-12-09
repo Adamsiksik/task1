@@ -73,6 +73,7 @@ export default function Home() {
   return (
     <>
     <NavigationBar />
+   
       <MainList stocks={currentTableData} type={"crypto"}/>
       {stockName.length === 0 ? (
         ""
