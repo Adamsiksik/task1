@@ -1,7 +1,6 @@
 import MainList from "../components/list";
 import React from "react";
 import { useEffect, useState, useMemo } from "react";
-import Seachbar from "../components/searchbar";
 import Pagination from "@mui/material/Pagination";
 import NavigationBar from "../components/navigationbar";
 
@@ -72,29 +71,29 @@ export default function Home() {
 
   return (
     <>
-    <NavigationBar />
-      <Seachbar handleClick={handleClick} />
-      <MainList stocks={currentTableData} type={"stocks"} />
-      {stockName.length === 0 ? (
-        ""
-      ) : (
-        <div
-          style={{
-            marginTop: 10,
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Pagination
-            count={Math.ceil(DataSize / PageSize)}
-            defaultPage={1}
-            page={currentPage}
-            siblingCount={1}
-            onChange={handleChange}
-          />
-        </div>
-      )}
+      <NavigationBar handleClick={handleClick} />
+
+        <MainList stocks={currentTableData} type={"stocks"} />
+        {stockName.length === 0 ? (
+          ""
+        ) : (
+          <div
+            style={{
+              marginTop: 10,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Pagination
+              count={Math.ceil(DataSize / PageSize)}
+              defaultPage={1}
+              page={currentPage}
+              siblingCount={1}
+              onChange={handleChange}
+            />
+          </div>
+        )}
     </>
   );
 }

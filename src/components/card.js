@@ -1,16 +1,17 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { useEffect, useState } from "react";
+import style from "../styles/Card.module.css";
 
 function CardComp(props) {
   let t = props.type === "stocks";
-  console.log(Math.floor(Date.now() / 1000))
+  console.log(Math.floor(Date.now() / 1000));
   let url = `https://finnhub.io/api/v1/quote?symbol=${props.name}&token=ce1m9giad3i9ep8up0f0ce1m9giad3i9ep8up0fg`;
-  
+
   if (t) {
     url = `https://finnhub.io/api/v1/quote?symbol=${props.name}&token=ce1m9giad3i9ep8up0f0ce1m9giad3i9ep8up0fg`;
   }
-  console.log(url)
+  console.log(url);
 
   const [stockDetail, setDeatail] = useState();
   const axios = require("axios");
@@ -20,7 +21,6 @@ function CardComp(props) {
       .then(function (response) {
         setDeatail(response.data);
         console.log(response.data);
-
       })
       .catch(function (error) {
         console.log(error);
@@ -39,11 +39,12 @@ function CardComp(props) {
     <>
       <div>
         {stockDetail ? (
-          <Card>
+          <Card className={style.customCard}>
             <Card.Body>
               <Card.Title>
                 {t
-                  ? `Price ${stockDetail.c}`: `Closing Price ${stockDetail.c[0]}`}
+                  ? `Price ${stockDetail.c}`
+                  : `Closing Price ${stockDetail.c[0]}`}
               </Card.Title>
               <Card.Text>
                 {t

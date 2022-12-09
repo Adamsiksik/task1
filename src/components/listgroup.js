@@ -1,5 +1,6 @@
 import Badge from "react-bootstrap/Badge";
 import ListGroup from "react-bootstrap/ListGroup";
+import style from "../styles/list.module.css";
 
 import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
@@ -14,9 +15,10 @@ function ListG(props) {
     <div>
       {props.prod.map((item, i) => (
         <ListGroup as="ul" key={i}>
-          <ListGroup.Item
+          <ListGroup.Item 
             as="li"
-            className="d-flex justify-content-between align-items-start"
+            
+            className={active !== i ? style.list: style.listactive}
           >
             <div className="ms-2 me-auto">
               <div className="fw-bold">{item.symbol}</div>
