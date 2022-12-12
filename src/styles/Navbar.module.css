@@ -15,4 +15,9 @@
   .navhead:hover {
     color: #3db5d9;
   }
+  .navhead {
+    color: #3db5d9;
+  
+    font-size: 23px;
+  }
   

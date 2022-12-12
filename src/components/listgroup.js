@@ -11,10 +11,13 @@ function ListG(props) {
   useEffect(() => {
     setActive();
   }, [props]);
+  const nav=(letters)=>{
+    router.push(`/${letters}`);
+  }
   return (
     <div>
       {props.prod.map((item, i) => (
-        <ListGroup as="ul" key={i}>
+        <ListGroup as="ul" key={i} >
           <ListGroup.Item 
             as="li"
             

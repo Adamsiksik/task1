@@ -2,14 +2,9 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import styles from "../styles/Navbar.module.css";
-import { useRouter } from "next/router";
 import Seachbar from "../components/searchbar";
 
 function NavigationBar(props) {
-  const router = useRouter();
-  const buttonHandler = () => {
-    router.push("/login");
-  };
   return (
     <Navbar
       className={styles.bar}
@@ -21,8 +16,10 @@ function NavigationBar(props) {
       <Container>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-        <Nav className="ms-auto">
-          
+          <Nav className="me-auto">
+            <Navbar.Brand className={styles.navhead} href="/">
+              Omega
+            </Navbar.Brand>
           </Nav>
           <Nav className="ms-auto">
             <Nav.Link className={styles.navLink} href="/">
@@ -32,8 +29,9 @@ function NavigationBar(props) {
               Crypto
             </Nav.Link>
           </Nav>
+
           <Nav className="ms-auto">
-            <Seachbar handleClick={props.handleClick} />
+            {props.type ? <Seachbar handleClick={props.handleClick} /> : <div style={{width:"350px"}}></div>}
           </Nav>
         </Navbar.Collapse>
       </Container>

@@ -1,9 +1,11 @@
 import MainList from "../components/list";
 import React from "react";
 import { useEffect, useState, useMemo } from "react";
-import Seachbar from "../components/searchbar";
 import Pagination from "@mui/material/Pagination";
 import NavigationBar from "../components/navigationbar";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Header from "../components/header";
 
 export default function Home() {
   let PageSize = 5;
@@ -20,7 +22,7 @@ export default function Home() {
               `
       )
       .then(function (response) {
-        setDataSize(200);
+        setDataSize(500);
         setName(response.data.slice(0, DataSize));
         console.log(stockName);
       })
@@ -72,8 +74,12 @@ export default function Home() {
 
   return (
     <>
-    <NavigationBar />
-   
+    <NavigationBar type={false}/>
+    <Row>
+        <Col md={{ span: 12 }}>
+          <Header />
+        </Col>
+      </Row>
       <MainList stocks={currentTableData} type={"crypto"}/>
       {stockName.length === 0 ? (
         ""
@@ -87,6 +93,7 @@ export default function Home() {
           }}
         >
           <Pagination
+           style={{ margin: "0 0 50px 0" }}
             count={Math.ceil(DataSize / PageSize)}
             defaultPage={1}
             page={currentPage}

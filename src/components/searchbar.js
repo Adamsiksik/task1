@@ -13,7 +13,7 @@ function OffcanvasExample(props) {
   };
 
   return (
-    <Form className="d-flex" onSubmit={searchHandle}>
+    <Form className="d-flex" onSubmit={searchHandle} style={{width:"350px"}}>
       <Form.Control
         type="search"
         placeholder="Search"
